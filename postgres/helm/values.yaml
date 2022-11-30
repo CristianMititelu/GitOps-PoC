@@ -1,6 +1,6 @@
 replicaCount: 1
 postgres:
-  name: postgres
+  name: helm-postgres
   group: db
   container:
     image: postgres:9.6-alpine
@@ -15,15 +15,15 @@ postgres:
     type: ClusterIP
     port: 5432
   volume:
-    name: postgres-storage
+    name: helm-postgres-storage
     kind: PersistentVolumeClaim
-    mountPath: /var/lib/postgresql/data
+    mountPath: /postgresql/data
     pvc:
-      name: postgres-persistent-volume-claim
+      name: helm-postgres-persistent-volume-claim
       accessMode: ReadWriteOnce
       storage: 4Gi
   config:
-    name: postgres-config
+    name: helm-postgres-config
     data:
        - key: key
          value: value
